@@ -1,0 +1,1 @@
+// Xử lý lỗi chung cho toàn bot
