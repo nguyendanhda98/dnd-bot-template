@@ -1,4 +1,5 @@
-```├── node_modules/
+```
+├── node_modules/
 ├── src/
 │   ├── commands/                   // Tất cả các lệnh bot
 │   │   ├── slash/                  // Slash Commands (được đăng ký tự động qua API Discord)
@@ -64,4 +65,5 @@
 ├── .env                            // File chứa các biến môi trường (TOKEN, API keys,…)
 ├── .gitignore
 ├── package.json
-└── tsconfig.json```
+└── tsconfig.json
+```
