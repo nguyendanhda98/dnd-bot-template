@@ -33,7 +33,7 @@ export class ExtendedClient extends Client {
       logger.info("Events loaded");
 
       await loadCommands(this);
-      logger.info("Commands loaded");
+      logger.info("Slash commands and context menu commands loaded");
 
       await loadLegacyCommands(this);
       logger.info("Legacy commands loaded");
