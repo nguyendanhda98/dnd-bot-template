@@ -4,7 +4,7 @@ import {
   Collection,
   GatewayIntentBits,
 } from "discord.js";
-import { loadEvents, loadCommands, loadInteractions } from "../loaders";
+import { loadEvents, loadCommands, loadInteractions, loadLegacyCommands } from "../loaders";
 import { logger } from "../utils/logger";
 
 export class ExtendedClient extends Client {
@@ -12,6 +12,7 @@ export class ExtendedClient extends Client {
   public buttons: Collection<string, any> = new Collection();
   public selectMenus: Collection<string, any> = new Collection();
   public modals: Collection<string, any> = new Collection();
+  public legacyCommands: Collection<string, any> = new Collection();
 
   constructor(options: ClientOptions = { intents: [] }) {
     super({
@@ -27,13 +28,15 @@ export class ExtendedClient extends Client {
   }
 
   async initialize() {
-    // Load events, commands, and interactions
     try {
       await loadEvents(this);
       logger.info("Events loaded");
 
       await loadCommands(this);
       logger.info("Commands loaded");
+
+      await loadLegacyCommands(this);
+      logger.info("Legacy commands loaded");
 
       await loadInteractions(this);
       logger.info("Interactions loaded");
