@@ -4,6 +4,7 @@ import {
     UserContextMenuCommandInteraction,
     EmbedBuilder,
     GuildMember,
+    MessageFlags,
 } from 'discord.js';
 import { logger } from '../../utils/logger';
 
@@ -41,12 +42,12 @@ export default {
                 );
             }
 
-            await interaction.reply({ embeds: [embed], ephemeral: true });
+            await interaction.reply({ embeds: [embed], flags: MessageFlags.Ephemeral});
         } catch (error) {
             logger.error('Error executing user context command:', error);
             await interaction.reply({ 
                 content: 'There was an error while fetching user information!', 
-                ephemeral: true 
+                flags: MessageFlags.Ephemeral
             });
         }
     }

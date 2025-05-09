@@ -62,7 +62,7 @@ export default {
       if (interaction.isRepliable() && !interaction.replied && !interaction.deferred) {
         await interaction.reply({ 
           content: 'There was an error while executing this interaction!', 
-          ephemeral: true 
+          flags: MessageFlags.Ephemeral
         });
       } else if (interaction.isRepliable() && !interaction.replied && interaction.deferred) {
         await interaction.editReply('There was an error while executing this interaction!');
