@@ -1,4 +1,4 @@
-import { Events, Interaction } from 'discord.js';
+import { Events, Interaction, MessageFlags } from 'discord.js';
 import { ExtendedClient } from '../../structures/ExtendedClient';
 import { logger } from '../../utils/logger';
 
@@ -17,7 +17,7 @@ export default {
           logger.warn(`Command ${interaction.commandName} not found`);
           return await interaction.reply({ 
             content: 'This command doesn\'t exist or isn\'t loaded properly.', 
-            ephemeral: true 
+            flags: MessageFlags.Ephemeral
           });
         }
         

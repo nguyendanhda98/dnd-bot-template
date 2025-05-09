@@ -1,7 +1,7 @@
-import { ModalSubmitInteraction } from 'discord.js';
+import { MessageFlags, ModalSubmitInteraction } from 'discord.js';
 
 export default {
-  customId: 'feedback_modal',
+  id: 'feedback_modal',
   async execute(interaction: ModalSubmitInteraction) {
     const feedback = interaction.fields.getTextInputValue('feedback_input');
     
@@ -10,7 +10,7 @@ export default {
     
     await interaction.reply({
       content: 'Thank you for your feedback!',
-      ephemeral: true
+      flags: MessageFlags.Ephemeral
     });
     
     // Implement your feedback handling logic here

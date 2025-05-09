@@ -1,0 +1,40 @@
+import { StringSelectMenuInteraction, MessageFlags } from 'discord.js';
+
+export default {
+    id: 'role_select',
+    async execute(interaction: StringSelectMenuInteraction) {
+        const selectedRole = interaction.values[0];
+        const member = interaction.member;
+        
+        if (!member || !('roles' in member)) {
+            await interaction.reply({
+                content: 'There was an error getting your roles.',
+                flags: MessageFlags.Ephemeral
+            });
+            return;
+        }
+
+        try {
+            const role = interaction.guild?.roles.cache.get(selectedRole);
+            if (!role) {
+                await interaction.reply({
+                    content: 'That role no longer exists.',
+                    flags: MessageFlags.Ephemeral
+                });
+                return;
+            }
+
+            await member.roles.add(role);
+            await interaction.reply({
+                content: `You have been given the ${role.name} role!`,
+                flags: MessageFlags.Ephemeral
+            });
+        } catch (error) {
+            console.error('Error adding role:', error);
+            await interaction.reply({
+                content: 'There was an error adding the role.',
+                flags: MessageFlags.Ephemeral
+            });
+        }
+    }
+};
